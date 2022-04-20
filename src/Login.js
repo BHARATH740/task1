@@ -9,18 +9,23 @@ const Login = () => {
         const { name, value } = target
         const newData = Object.assign({}, data, { [name]: value })
         setData(newData)
+        localStorage.setItem('key',JSON.stringify(newData))
     }
 
     const handleSubmit = (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         console.log(data)
         document.cookie = `email=${data.email}`; 
         document.cookie = `username=${data.username}`; 
         document.cookie = `password=${data.password}`; 
         console.log(document.cookie) 
+        // const value = localStorage.getItem('key')
+        // console.log(value)
     }
 
     console.log(document.cookie)
+    const value = localStorage.getItem('key')
+    console.log(value)
     return (
         <div className='container'>
         

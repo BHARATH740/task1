@@ -4,6 +4,8 @@ import { validEmail, validPassword } from "./regex";
 export default function Form(props) {
     // const [emailErr, setEmailErr] = useState(false);
     // const [pwdError, setPwdError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
     var emailErr = false;
     var pwdError = false;
     const validate = () => {
@@ -13,31 +15,37 @@ export default function Form(props) {
         if (!validPassword.test(props.data.password)) {
            pwdError = true;
         }
+        console.log("validation")
+        console.log(emailErr)
      };
 
-    //  const sample = () => {
-    //     if (!emailErr && !pwdError) {
-    //         return props.handleSubmit
-    //     }
-    //     return null
-    //  }
+     const sample = () => {
+        if (!emailErr && !pwdError) {
+            return props.handleSubmit
+        }
+        else {
+            setErrorMessage('error!!!');
+            return errorMessage
+        }
+     }
     return(
         <div>
             <div className='row justify-content-center'>
                 <div className='col-4'>
                     <div className='main'>
-                        <form onSubmit={props.handleSubmit}>
+                        {/* <form onSubmit={props.handleSubmit}> */}
+                        <form onSubmit={sample}>
                             <div className="form-group">
                                 <label htmlFor="email">Email address : </label>
-                                <input type="email" className="form-control" name='email' id="email" onChange={props.handleChange}></input>
+                                <input type="email" className="form-control" name='email' id="email" onChange={props.handleChange} required></input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="username">Username : </label>
-                                <input type="text" className="form-control" name='username' id="username" onChange={props.handleChange}></input>
+                                <input type="text" className="form-control" name='username' id="username" onChange={props.handleChange} required></input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password : </label>
-                                <input type="password" className="form-control" name='password' id="password" onChange={props.handleChange} validations={{}}></input>
+                                <input type="password" className="form-control" name='password' id="password" onChange={props.handleChange} required  validations={{}}></input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="file-upload" className="upload-file">Upload your image here : </label>
