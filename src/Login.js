@@ -12,15 +12,18 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         console.log(data)
         document.cookie = `email=${data.email}`; 
         document.cookie = `username=${data.username}`; 
         document.cookie = `password=${data.password}`; 
         console.log(document.cookie) 
     }
+
+    console.log(document.cookie)
     return (
         <div className='container'>
+        
             <Form
                 handleChange = {handleChange}
                 handleSubmit = {handleSubmit}
